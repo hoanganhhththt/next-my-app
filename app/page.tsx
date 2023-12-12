@@ -1,8 +1,14 @@
+'use client'
+
 import Image from 'next/image'
 import styles from './page.module.css'
 import Navbar from '@/component/Navbar'
+import { usePathname } from 'next/navigation'
 
 export default function Home() {
+  const pathName = usePathname();
+  console.log(pathName);
+
   return (
     <main className={styles.main}>
       <div className={styles.title}>Homepage</div>
