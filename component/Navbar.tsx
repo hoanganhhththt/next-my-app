@@ -1,11 +1,11 @@
 'use client'
 
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
 
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <nav>
