@@ -1,12 +1,27 @@
-import Image from 'next/image'
-import styles from '../page.module.css'
+import { Suspense } from 'react';
+import Link from 'next/link';
+import styles from '../../style/dashboard.module.css'
 
-export default function DashBoardPage() {
+async function getData() {
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+  if(!res.ok) {
+    throw new Error('Fail to fetch data')
+  }
+  return res.json();
+}
+
+export default async function DashBoardPage() {
+  const data = await getData();
   return (
-    <main className={styles.main}>
-      <div className={styles.title}>Dashboardpage</div>
-      <p className={styles.text}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores aspernatur aut reiciendis quaerat cupiditate natus porro nobis sit, quae beatae inventore quia iure minima distinctio dolorum culpa mollitia aperiam sint.</p>
-      <p className={styles.text}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe voluptatibus repudiandae eius, officiis mollitia labore, provident libero quis eaque voluptate vel exercitationem sunt ea reiciendis aliquam tenetur! Dolor, doloremque! Alias?</p>
-    </main>
+    <div>
+      <h1>All list Nine dev</h1>
+      <Suspense fallback={<div>Loading...</div>}>
+        {(data || [])?.map((item: any) => (
+          <Link href={'/dashboard/' + item?.id} key={item?.userId}>
+            <div className={styles.single}><h3>{item?.title}</h3></div>
+          </Link>
+        ))}
+      </Suspense>
+    </div>
   )
 }

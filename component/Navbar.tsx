@@ -1,5 +1,6 @@
 'use client'
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -10,7 +11,7 @@ const Navbar = () => {
   return (
     <nav>
       <div className="logo">
-        <h1>Hale</h1>
+        <Image alt="logo nine dev" src="/ninedev.png" width={128} height={77}/>
       </div>
       <Link href="/">Home</Link>
       <Link href="/about">About</Link>

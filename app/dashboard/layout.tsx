@@ -1,3 +1,10 @@
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: 'Dashboard',
+  description: 'Dashboard',
+}
+
 export default function DashBoardLayout({
   children,
 }: {
@@ -5,13 +12,7 @@ export default function DashBoardLayout({
 }) {
   return (
     <section>
-      <div>
-        Header Hale
-      </div>
         {children}
-      <div>
-        Footer Hale
-      </div>
     </section>
   )
 }
